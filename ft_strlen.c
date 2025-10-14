@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 10:25:23 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/10/14 10:25:41 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/10/14 14:46:21 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@ int	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
-	while (str)
+	while (str[i])
 	{
 		i++;
-		str++;
 	}
 	return (i);
 }

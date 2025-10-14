@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/14 10:26:27 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/10/14 15:21:57 by otahiri-         ###   ########.fr       */
+/*   Created: 2025/10/14 14:41:25 by otahiri-          #+#    #+#             */
+/*   Updated: 2025/10/14 14:45:30 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-
-int		ft_strlen(const char *str);
-int		ft_isalpha(char c);
-int		ft_isdigit(char c);
-int		ft_isalnum(char c);
-int		ft_isascii(char c);
-int		ft_isprint(char c);
-void	*ft_memset(void *pt, int cha, size_t n);
-void	ft_bzero(void *pt, size_t n);
-
-#endif
+int	ft_isprint(char c)
+{
+	return (c < 127 && c > 19 || c <= 13 && c >= 7);
+}
