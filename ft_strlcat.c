@@ -15,25 +15,25 @@
 
 size_t	strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	len;
+	size_t	dst_end;
 	size_t	src_len;
 	size_t	i;
 
 	i = 0;
-	len = 0;
+	dst_end = 0;
 	src_len = 0;
 	if (size == 0)
 		return (0);
-	while (dst[len])
-		len++;
+	while (dst[dst_end])
+		dst_end++;
 	while (src[src_len])
 		src_len++;
-	while (len + i < size - 1 && src[i])
+	while (dst_end + i < size - 1 && src[i])
 	{
-		dst[len + i] = src[i];
+		dst[dst_end + i] = src[i];
 		i++;
 	}
-	if (len + i < size)
-		dst[len + i] = '\0';
-	return (len + src_len);
+	if (dst_end + i < size)
+		dst[dst_end + i] = '\0';
+	return (dst_end + src_len);
 }
