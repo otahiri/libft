@@ -10,25 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdlib.h>
 
-static t_list	*my_lsnew(void *content)
+static t_list	*my_lstnew(void *content)
 {
 	t_list	*list;
 
-	list = malloc(sizeof(t_list));
+	list = malloc(sizeof(t_list *));
 	if (!list)
 		return (NULL);
-	list->next = NULL;
 	list->content = content;
+	list->next = NULL;
 	return (list);
 }
 
-static void	del_list(t_list **list, void (*del)(void *))
+static void	my_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*next;
 	t_list	*current;
 
-	current = (*list);
+	current = (*lst);
 	next = current->next;
 	while (current)
 	{
@@ -42,28 +43,25 @@ static void	del_list(t_list **list, void (*del)(void *))
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*head;
-	t_list	*new;
+	t_list	*res;
+	t_list	*current;
 
 	if (lst)
 	{
-		new = my_lsnew(f(lst->content));
-		if (!new)
-			return (NULL);
-		head = new;
+		res = my_lstnew(f(lst->content));
+		current = res;
 		lst = lst->next;
-		new = new->next;
-		while (lst)
-		{
-			new = my_lsnew(f(lst->content));
-			if (!new)
-			{
-				del_list(&head, del);
-				return (NULL);
-			}
-			new = new->next;
-			lst = lst->next;
-		}
 	}
-	return (head);
+	while (lst)
+	{
+		if (!current)
+		{
+			my_lstclear(&res, del);
+			return (NULL);
+		}
+		current->next = my_lstnew(f(lst->content));
+		current = current->next;
+		lst = lst->next;
+	}
+	return (res);
 }

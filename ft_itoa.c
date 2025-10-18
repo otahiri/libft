@@ -59,14 +59,12 @@ static int	my_put_nbr(char *res, int idx, long num)
 
 char	*ft_itoa(int n)
 {
-	int		temp_num;
 	int		size;
 	char	*res;
 	int		sign;
 	long	num;
 
 	num = n;
-	temp_num = n;
 	sign = 1;
 	if (n < 0)
 	{
