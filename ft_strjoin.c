@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdio.h>
 
 static int	my_strlen(const char *str)
 {
@@ -34,7 +35,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		res_str[len++] = s1[temp_len++];
 	temp_len = 0;
 	while (s2[temp_len])
-		res_str[len++] = s2[temp_len];
+		res_str[len++] = s2[temp_len++];
 	res_str[len] = '\0';
 	return (res_str);
 }

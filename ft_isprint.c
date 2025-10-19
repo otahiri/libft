@@ -12,5 +12,5 @@
 
 int	ft_isprint(char c)
 {
-	return ((c < 127 && c > 19) || (c <= 13 && c >= 7));
+	return (c < 127 && c > 31);
 }

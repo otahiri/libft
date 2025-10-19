@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdlib.h>
 
 static int	is_tirmmable(const char *str, char c)
 {
@@ -52,7 +51,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 			s_len++;
 			continue ;
 		}
-		res[len++] = s1[s_len];
+		res[len++] = s1[s_len++];
 	}
 	res[len] = '\0';
 	return (res);

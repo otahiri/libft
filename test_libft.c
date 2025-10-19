@@ -1,5 +1,6 @@
 #include "unity.h"
 #include "libft.h"
+#include <stdlib.h>
 
 void setUp(void) {}
 void tearDown(void) {}
@@ -120,13 +121,17 @@ void test_memcmp(void)
 //
 void test_itoa_atoi(void)
 {
-	TEST_ASSERT_EQUAL_STRING("123", ft_itoa(123));
-	TEST_ASSERT_EQUAL(-42, ft_atoi("   -42"));
+	char *result;
+	result = ft_itoa(123);
+	TEST_ASSERT_EQUAL_STRING("123", result);
+	free(result);
+	TEST_ASSERT_EQUAL(-42, result);
 }
 
 //
 // ─── LINKED LIST FUNCTIONS ──────────────────────────────────────────────
 //
+
 void test_lst_functions(void)
 {
 	t_list *a = ft_lstnew("x");
@@ -136,10 +141,11 @@ void test_lst_functions(void)
 	TEST_ASSERT_EQUAL(2, ft_lstsize(a));
 	TEST_ASSERT_EQUAL_PTR(b, ft_lstlast(a));
 
-	ft_lstdelone(b, NULL);
+	// remove this line: ft_lstdelone(b, NULL);
 	ft_lstclear(&a, NULL);
 	TEST_ASSERT_NULL(a);
 }
+
 
 //
 // ─── MAIN ───────────────────────────────────────────────────────────────

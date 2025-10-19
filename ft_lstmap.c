@@ -26,18 +26,19 @@ static t_list	*my_lstnew(void *content)
 
 static void	my_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list	*next;
 	t_list	*current;
+	t_list	*previous;
 
 	current = (*lst);
-	next = current->next;
+	previous = current;
+	current = current->next;
 	while (current)
 	{
 		if (del)
-			del(current->content);
-		free(current);
-		current = next;
-		next = current->next;
+			del(previous->content);
+		free(previous);
+		previous = current;
+		current = current->next;
 	}
 }
 
