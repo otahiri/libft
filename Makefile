@@ -27,6 +27,8 @@ $(NAME): $(OBJ)
 
 bonus: $(NAME) $(BONUS_OBJ)
 	ar rcs $(NAME) $(BONUS_OBJ)
+test: re bonus 
+	gcc -g -fPIC -o test_libft test_libft.c unity.c libft.a
 
 clean:
 	rm -f $(OBJ)
