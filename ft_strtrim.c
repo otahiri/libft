@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	is_tirmmable(const char *str, char c)
+static int	is_tirmmable(const char *str, const char c)
 {
 	int	i;
 
@@ -25,34 +25,23 @@ static int	is_tirmmable(const char *str, char c)
 	return (0);
 }
 
-static int	my_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*res;
-	int		s_len;
 	int		len;
+	int		i;
+	int		max_copy_len;
 
-	s_len = 0;
+	max_copy_len = ft_strlen(s1);
 	len = 0;
-	res = malloc(sizeof(char) * (my_strlen(s1) + 1));
-	while (s1[s_len])
-	{
-		if (is_tirmmable(set, s1[s_len]))
-		{
-			s_len++;
-			continue ;
-		}
-		res[len++] = s1[s_len++];
-	}
+	i = 0;
+	res = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	while (max_copy_len > 0 && is_tirmmable(set, s1[max_copy_len - 1]))
+		max_copy_len--;
+	while (is_tirmmable(set, s1[i]))
+		i++;
+	while (i < max_copy_len)
+		res[len++] = s1[i++];
 	res[len] = '\0';
 	return (res);
 }

@@ -10,31 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdio.h>
-
-static int	my_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*res_str;
 	size_t	len;
 	size_t	temp_len;
+	size_t	total_len;
 
+	total_len = ft_strlen(s1) + ft_strlen(s2);
 	len = 0;
 	temp_len = 0;
-	res_str = malloc(sizeof(char) * (my_strlen(s1) + my_strlen(s2) + 1));
+	res_str = malloc((total_len + 1));
+	res_str[0] = '\0';
 	while (s1[temp_len])
 		res_str[len++] = s1[temp_len++];
 	temp_len = 0;
-	while (s2[temp_len])
+	while (len <= total_len)
 		res_str[len++] = s2[temp_len++];
 	res_str[len] = '\0';
 	return (res_str);

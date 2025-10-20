@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdlib.h>
 
 static int	word_count(char const *s, char c)
 {
@@ -34,45 +35,48 @@ static int	word_count(char const *s, char c)
 	return (count);
 }
 
-static void	my_strcpy(int idx, char const *s, char *dest, int len)
+static void	word_copy(char *res, const char *src, int idx, int len)
 {
 	int	i;
 
 	i = 0;
 	while (i < len)
+		res[i++] = src[idx++];
+	res[i] = '\0';
+}
+
+static void	spliter(char const *s, char c, char **res)
+{
+	int	idx;
+	int	i;
+	int	len;
+
+	len = 0;
+	i = 0;
+	idx = 0;
+	while (s[i])
 	{
-		dest[i] = (char)s[idx + i];
-		i++;
+		len = 0;
+		while (s[i + len] && s[i + len] == c)
+			len++;
+		if (len > 0)
+		{
+			res[idx++] = malloc(sizeof(char) * (len + 1));
+			word_copy(res[idx], s, idx, len);
+			i += len;
+		}
+		if (res[i])
+			i++;
 	}
-	dest[i] = '\0';
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	int		idx;
-	int		len;
-	char	**arr;
+	char	**res;
 
-	i = 0;
-	idx = 0;
-	if (!s)
+	res = malloc(sizeof(char *) * (word_count(s, c) + 1));
+	if (!res)
 		return (NULL);
-	arr = malloc(sizeof(char *) * word_count(s, c));
-	while (s[i])
-	{
-		len = 0;
-		while (s[i + len] && s[i + len] != c)
-			len++;
-		if (len > 0)
-		{
-			arr[idx] = malloc(sizeof(char) * (len + 1));
-			my_strcpy(i, s, arr[idx++], len);
-			i += len;
-		}
-		if (s[i] && len == 0)
-			i++;
-	}
-	arr[idx] = NULL;
-	return (arr);
+	spliter(s, c, res);
+	return (res);
 }

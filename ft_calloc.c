@@ -18,13 +18,13 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	unsigned char	*tptr;
 
 	i = 0;
-	if (nmemb * size > (size_t) -1)
+	if (nmemb != 0 && size > SIZE_MAX / nmemb)
 		return (NULL);
 	ptr = malloc(nmemb * size);
 	if (!ptr)
 		return (NULL);
 	tptr = (unsigned char *)ptr;
-	while (i < size)
+	while (i < size * nmemb)
 		tptr[i++] = 0;
 	return (ptr);
 }

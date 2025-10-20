@@ -1,9 +1,9 @@
 CC = cc
 NAME = libft.a
 
-all: $(NAME)
+all: re
 
-FLAGS = -Wextra -Werror -Wall -I.
+FLAGS = -Wextra -Werror -Wall -I. -g
 
 SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 			 ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c \
@@ -27,8 +27,6 @@ $(NAME): $(OBJ)
 
 bonus: $(NAME) $(BONUS_OBJ)
 	ar rcs $(NAME) $(BONUS_OBJ)
-test: re bonus 
-	gcc -g -fPIC -o test_libft test_libft.c unity.c libft.a
 
 clean:
 	rm -f $(OBJ)
