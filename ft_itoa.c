@@ -29,7 +29,7 @@ static void	rev_str(char *s, int last_idx)
 	}
 }
 
-static int	size_count(int n)
+static int	size_count(long n)
 {
 	int	size;
 
@@ -66,13 +66,15 @@ char	*ft_itoa(int n)
 
 	num = n;
 	sign = 1;
-	if (n < 0)
+	if (num < 0)
 	{
 		num *= -1;
 		sign = -1;
 	}
-	size = size_count(n);
-	res = malloc(sizeof(char) * (size + 1));
+	size = size_count(num);
+	res = malloc(sizeof(char) * (size + 1 + (sign < 0)));
+	if (!res)
+		return (NULL);
 	size = 0;
 	if (sign < 0)
 		res[size++] = '-';

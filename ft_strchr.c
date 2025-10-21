@@ -22,7 +22,7 @@ char	*ft_strchr(const char *s, int c)
 		size++;
 	while (i <= size)
 	{
-		if (s[i] == c)
+		if (s[i] == (unsigned char)c)
 			return ((char *)s + i);
 		i++;
 	}

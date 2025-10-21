@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 10:26:27 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/10/18 13:19:37 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:26:09 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ typedef struct s_list
 }	t_list;
 
 int			ft_strlen(const char *str);
-int			ft_isalpha(char c);
-int			ft_isdigit(char c);
-int			ft_isalnum(char c);
-int			ft_isascii(char c);
-int			ft_isprint(char c);
+int			ft_isalpha(int c);
+int			ft_isdigit(int c);
+int			ft_isalnum(int c);
+int			ft_isascii(int c);
+int			ft_isprint(int c);
 void		*ft_memset(void *pt, int cha, size_t n);
 void		ft_bzero(void *pt, size_t n);
 char		*ft_substr(char const *s, unsigned int start, size_t len);

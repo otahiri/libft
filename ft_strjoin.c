@@ -22,6 +22,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	len = 0;
 	temp_len = 0;
 	res_str = malloc((total_len + 1));
+	if (!res_str)
+		return (NULL);
 	res_str[0] = '\0';
 	while (s1[temp_len])
 		res_str[len++] = s1[temp_len++];

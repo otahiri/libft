@@ -17,12 +17,13 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	lil_len;
 
 	i = 0;
-	if (!little)
+	if (big == little)
 		return ((char *)big);
 	while (big[i])
 	{
 		lil_len = 0;
-		while (little[lil_len] == big[i + lil_len] && i + lil_len < len)
+		while (big[i + lil_len] && little[lil_len] == big[i + lil_len]
+			&& i + lil_len < len)
 			lil_len++;
 		if (!little[lil_len])
 			return ((char *)big + i);

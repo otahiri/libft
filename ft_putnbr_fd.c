@@ -10,15 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stddef.h>
-#include <unistd.h>
-#include <fcntl.h>
 
 static size_t	convert_num(size_t idx, long num, char res[])
 {
 	size_t	i;
 	char	tmp;
-	int		output;
+	size_t	output;
 
 	i = 0;
 	if (res[0] == '-')
@@ -29,6 +26,8 @@ static size_t	convert_num(size_t idx, long num, char res[])
 		num /= 10;
 	}
 	output = idx;
+	if (output == 1)
+		return (output);
 	idx--;
 	while (idx >= i)
 	{
@@ -62,6 +61,5 @@ void	ft_putnbr_fd(int n, int fd)
 		return ;
 	}
 	i = convert_num(i, tmp_num, num);
-	while (idx < i)
-		write(fd, &num[idx++], 1);
+	write(fd, &num, i);
 }
