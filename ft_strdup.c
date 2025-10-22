@@ -11,16 +11,6 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static size_t	my_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 char	*ft_strdup(const char *s)
 {
 	char	*dup;
@@ -28,7 +18,7 @@ char	*ft_strdup(const char *s)
 	size_t	len;
 
 	i = 0;
-	len = my_strlen(s);
+	len = ft_strlen(s);
 	dup = malloc(len + 1);
 	if (!dup)
 		return (NULL);

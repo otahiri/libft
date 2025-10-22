@@ -6,65 +6,31 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:33:14 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/10/21 14:38:26 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/10/22 11:34:02 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-
-static t_list	*my_lstnew(void *content)
-{
-	t_list	*list;
-
-	list = malloc(sizeof(t_list));
-	if (!list)
-		return (NULL);
-	list->content = content;
-	list->next = NULL;
-	return (list);
-}
-
-static void	my_lstclear(t_list **lst, void (*del)(void*))
-{
-	t_list	*current;
-	t_list	*next;
-
-	if (!lst)
-		return ;
-	current = (*lst);
-	while (current)
-	{
-		if (del)
-			del(current->content);
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*lst = NULL;
-}
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*res;
 	t_list	*current;
 
-	if (!f || !del)
+	if (!del || !f)
 		return (NULL);
-	if (lst)
-	{
-		res = my_lstnew(f(lst->content));
-		if (!res)
-			return (NULL);
-		current = res;
-		lst = lst->next;
-	}
+	res = NULL;
 	while (lst)
 	{
+		current = ft_lstnew(f(lst->content));
 		if (!current)
 		{
-			my_lstclear(&res, del);
+			ft_lstclear(&res, del);
 			return (NULL);
 		}
-		current->next = my_lstnew(f(lst->content));
+		if (res)
+			ft_lstadd_back(&res, current);
+		else
+			res = current;
 		current = current->next;
 		lst = lst->next;
 	}
