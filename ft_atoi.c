@@ -6,34 +6,40 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 09:31:16 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/10/21 14:55:39 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:10:33 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
+static int	overflow_check(int sign)
+{
+	if (sign < 0)
+		return (0);
+	return (-1);
+}
+
 int	ft_atoi(const char *nptr)
 {
-	size_t	i;
 	int		sign;
-	int		num;
+	long	num;
 
-	i = 0;
 	num = 0;
 	sign = 1;
-	while (nptr[i] && (nptr[i] == ' ' || ((nptr[i] <= '\r'
-					&& nptr[i] >= '\t'))))
-		i++;
-	if (nptr[i] && (nptr[i] == '-' || nptr[i] == '+'))
+	while (*nptr && (*nptr == ' ' || ((*nptr <= '\r' && *nptr >= '\t'))))
+		nptr++;
+	if (*nptr && (*nptr == '-' || *nptr == '+'))
 	{
-		if (nptr[i] == '-')
+		if (*nptr == '-')
 			sign = -1;
-		i++;
+		nptr++;
 	}
-	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
+	while (*nptr && (*nptr >= '0' && *nptr <= '9'))
 	{
+		if (((num * 10) + (*nptr - '0')) < 0)
+			return (overflow_check(sign));
 		num *= 10;
-		num += nptr[i] - '0';
-		i++;
+		num += *nptr - '0';
+		nptr++;
 	}
 	return (num * sign);
 }

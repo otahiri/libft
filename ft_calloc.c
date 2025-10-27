@@ -14,17 +14,16 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void			*ptr;
+	size_t			product;
 	size_t			i;
-	unsigned char	*tptr;
 
 	i = 0;
-	if (nmemb != 0 && size > SIZE_MAX / nmemb)
+	product = nmemb * size;
+	if (size != 0 && product / size != nmemb)
 		return (NULL);
-	ptr = malloc(nmemb * size);
+	ptr = malloc(product);
 	if (!ptr)
 		return (NULL);
-	tptr = (unsigned char *)ptr;
-	while (i < size * nmemb)
-		tptr[i++] = 0;
+	ft_bzero(ptr, product);
 	return (ptr);
 }

@@ -31,6 +31,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*end;
 	char	*res;
 
+	if (!s1 || !set)
+		return (NULL);
 	start = (char *)s1;
 	while (*start && is_trim(set, *start))
 		start++;

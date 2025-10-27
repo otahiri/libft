@@ -18,6 +18,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	temp_len;
 	size_t	total_len;
 
+	if (!s1 || !s2)
+		return (NULL);
 	total_len = ft_strlen(s1) + ft_strlen(s2);
 	len = 0;
 	temp_len = 0;
@@ -30,6 +32,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	temp_len = 0;
 	while (len <= total_len)
 		res_str[len++] = s2[temp_len++];
-	res_str[len] = '\0';
 	return (res_str);
 }

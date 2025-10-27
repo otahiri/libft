@@ -11,22 +11,14 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	my_strlen(char const *s)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;
 	char			*res;
 
-	res = malloc(sizeof(char) * (my_strlen(s) + 1));
+	if (!s || !f)
+		return (NULL);
+	res = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!res)
 		return (NULL);
 	i = 0;
