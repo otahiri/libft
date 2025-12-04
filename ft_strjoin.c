@@ -23,14 +23,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	total_len = ft_strlen(s1) + ft_strlen(s2);
 	len = 0;
 	temp_len = 0;
-	res_str = malloc((total_len + 1));
+	res_str = malloc(sizeof(char) * (total_len + 1));
 	if (!res_str)
 		return (NULL);
-	res_str[0] = '\0';
 	while (s1[temp_len])
 		res_str[len++] = s1[temp_len++];
 	temp_len = 0;
-	while (len <= total_len)
+	while (len < total_len)
 		res_str[len++] = s2[temp_len++];
+	res_str[len] = '\0';
 	return (res_str);
 }

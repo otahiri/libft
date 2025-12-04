@@ -26,17 +26,15 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $@ $^
 
-bonus: .bonus
 
-.bonus: $(NAME) $(BONUS_OBJ)
+bonus: $(NAME) $(BONUS_OBJ)
 	ar rcs $(NAME) $(OBJ) $(BONUS_OBJ)
-	touch .bonus
 
 clean:
 	rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	 rm -f $(NAME) .bonus
+	rm -f $(NAME)
 
 re: fclean $(NAME)
 

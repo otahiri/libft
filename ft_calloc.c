@@ -15,9 +15,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void			*ptr;
 	size_t			product;
-	size_t			i;
 
-	i = 0;
 	product = nmemb * size;
 	if (size != 0 && product / size != nmemb)
 		return (NULL);
